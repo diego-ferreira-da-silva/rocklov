@@ -1,11 +1,14 @@
 Dado('que eu acesso a página de cadastro') do
-    pending # Write code here that turns the phrase above into concrete actions
+    visit "http://rocklov-web:3000/signup"
 end
   
 Quando('submeto o meu cadastro completo') do
-    pending # Write code here that turns the phrase above into concrete actions
+    find("#fullName").set "Diego Ferreira"
+    find("#email").set Faker::Internet.free_email
+    find("#password").set "pwd123"
+    click_button "Cadastrar"
 end
   
 Então('sou redirecionado para o Dashboard') do
-    pending # Write code here that turns the phrase above into concrete actions
+    expect(page).to have_css ".dashboard"
 end
