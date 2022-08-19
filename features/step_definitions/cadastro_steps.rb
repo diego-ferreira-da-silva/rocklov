@@ -1,15 +1,10 @@
-require 'mongo'
-
 Dado('que eu acesso a página de cadastro') do
     visit "http://rocklov-web:3000/signup"
 end
   
 Quando('submeto o meu cadastro completo') do
 
-    client = Mongo::Client.new('mongodb://rocklov-db:27017/rocklov')
-    users = client[:users]
-    users.delete_many({email: "diego@email.com"})
-
+    MongoDB.new.remove_user("diego@email.com")
 
     find("#fullName").set "Diego Ferreira"
     find("#email").set "diego@email.com"
